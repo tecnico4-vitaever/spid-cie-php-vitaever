@@ -1,0 +1,46 @@
+<?php 
+
+    require_once("/var/www/ntk-vitaever-spid/proxy-spid-php.php");
+
+    $production = false;
+    $state = '';
+
+    $spidsdk = new PROXY_SPID_PHP('692878970e6c8', '/proxy-sample.php', $state, $production);
+
+    //$spidsdk->setPurpose("P");
+
+    if($spidsdk->isAuthenticated() 
+        && isset($_GET['idp']) 
+        && $spidsdk->isIdP($_GET['idp'])) {
+
+            echo "<p>IdP: <b>" . $spidsdk->getIdP() . "</b></p>";
+            
+            foreach($spidsdk->getAttributes() as $attribute=>$value) {
+                echo "<p>" . $attribute . ": <b>" . $value[0] . "</b></p>";
+            }
+    
+            echo "<hr/><p><a href='" . $spidsdk->getLogoutURL("/proxy-login.php") . "'>Logout</a></p>";
+
+    } else {
+
+        if(!isset($_GET['idp'])) {    
+            if($spidsdk->isSPIDEnabled()) {
+                echo "<p>SPID BUTTON</p>";
+                $spidsdk->insertSPIDButtonCSS();
+                $spidsdk->insertSPIDButton("L");  
+                $spidsdk->insertSPIDButtonJS(); 
+            }
+            if($spidsdk->isCIEEnabled()) {
+                echo "<p>CIE BUTTON";
+                $spidsdk->insertCIEButton();
+            }
+            
+        } else {
+            $spidsdk->login($_GET['idp'], 2);  
+
+            // set AttributeConsumingServiceIndex 2
+            //$spidsdk->login($_GET['idp'], 2, "", 2);
+        }
+    }
+?>
+

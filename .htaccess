@@ -1,0 +1,6 @@
+<ifmodule mod_headers.c>
+Header set Access-Control-Allow-Origin "*"
+</ifmodule>
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
