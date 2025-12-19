@@ -127,7 +127,6 @@ if(in_array($client_id, array_keys($clients)) && (isset($_GET['redirect_uri']) |
 
         $payload = [
             "fiscal_number" => $data['fiscalNumber'],
-            "email" => $data['email'],
         ];
 
         $jwt = JWT::encode($payload, $shared_secret, 'HS256');
