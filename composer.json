@@ -3,7 +3,10 @@
         "version": "3.19.1",
         "allow-plugins": {
             "simplesamlphp/composer-module-installer": true
-        }
+        },
+	"audit": {
+        "block-insecure": false
+    }
     },
     "repositories": {
         "spid-sp-access-button": {
@@ -61,7 +64,9 @@
         "web-token/jwt-signature-algorithm-rsa": "2.2.11",
         "web-token/jwt-signature-algorithm-hmac": "2.2.11",
         "web-token/jwt-encryption-algorithm-aeskw": "2.2.11",
-        "web-token/jwt-encryption-algorithm-aescbc": "2.2.11"
+        "web-token/jwt-encryption-algorithm-aescbc": "2.2.11",
+        "firebase/php-jwt": "^6.11",
+        "vlucas/phpdotenv": "^5.6"
     },
     "scripts": {
         "post-update-cmd": [
