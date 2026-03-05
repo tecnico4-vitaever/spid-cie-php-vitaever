@@ -36,9 +36,13 @@ SPID: https://sitocheospitailprogetto.com/vitaever/module.php/saml/sp/metadata.p
 CIE: https://sitocheospitailprogetto.com/vitaever/module.php/saml/sp/metadata.php/cie
 Nota: `/vitaever/` nel percorso corrisponde al nome del servizio impostato durante la fase di post-installazione di Composer.
 
-Info sui files:d
-- login_saml.php è l'endpoint dal quale Vitaever fa la richiesta per poi accedere agli IDP sia con CIE che con SPID.
-- login_test.php è un file dimostrativo dei bottoni di login, è possibile eseguire il login in questa pagina e recuperare tutti i dati dell'utente loggato. E' possibile anche sloggarsi.
-- /vendor/simplesamlphp/simplesamlphp/config/authsources.php è un file che permette di modificare i dati presenti all'interno dell'xml
-- /vendor/simplesamlphp/simplesamlphp/cert/* sono presenti i certificati sia di SPID che di CIE. Sostituisci questi file per aggiornare i certificati dell'XML.
+### Dettagli dei File e Configurazione
+
+| File / Percorso                                                                             | Descrizione e Funzionalità |
+|:--------------------------------------------------------------------------------------------| :--- |
+| **`login_saml.php`**                                                                        | **Endpoint di Autenticazione**: Il punto di ingresso principale dove Vitaever inoltra le richieste per interfacciarsi con gli Identity Provider (IdP) di SPID e CIE. |
+| **`login_test.php`**                                                                        | **Pagina Demo**: File dimostrativo con i bottoni di login. Permette di testare l'accesso, recuperare i dati dell'utente loggato e verificare la procedura di logout. |
+| **`vendor/simplesamlphp/simplesamlphp/config/authsources.php`**                             | **Configurazione SAML**: File critico per modificare i dati tecnici e i parametri che verranno inclusi all'interno dei file XML dei metadati. |
+| **`vendor/simplesamlphp/simplesamlphp/cert/*`**                                           | **Certificati**: Directory contenente i certificati per SPID e CIE. Sostituisci i file in questa cartella per aggiornare la firma e la validità dei metadati XML. |
+
 
