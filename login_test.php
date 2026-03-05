@@ -16,7 +16,7 @@
     $idp = $_REQUEST['idp'];
     if ($idp=="CIE" || $idp=="CIE TEST") {
         $service = "cie";
-        $idp = $production == true ? "CIE" : "CIE TEST";
+        $idp = $production ? "CIE" : "CIE TEST";
     }
 
     $spidsdk = new SPID_PHP($production, $service);
