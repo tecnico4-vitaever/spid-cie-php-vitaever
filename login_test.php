@@ -7,9 +7,10 @@
 
     require_once("spid-php.php");
 
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
 
-
-    $production = false;
+    $production = isset($_ENV) ? $_ENV['IS_PRODUCTION']: false;
 
     $service = "spid";
     $idp = $_REQUEST['idp'];

@@ -146,7 +146,7 @@ if(in_array($client_id, array_keys($clients)) && (isset($_GET['redirect_uri']) |
         if ($redirect_uri != "") {
             $returnTo .= '&redirect_uri='.$redirect_uri;
         }
-        setcookie('SPIDPHP_PROXYRETURNTO', $returnTo, time()+60*5, '/');
+	setcookie('SPIDPHP_PROXYRETURNTO', $returnTo, time()+60*5, '/');
         $spidsdk->login($idp, $spidcie_level, $_SERVER['SCRIPT_URI'], $atcs_index);
         die();
     }
