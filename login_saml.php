@@ -34,8 +34,10 @@ const DEBUG = false;
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+$production = isset($_ENV) ? $_ENV['IS_PRODUCTION']: false;
+
 $proxy_config = file_exists(PROXY_CONFIG_FILE)? json_decode(file_get_contents(PROXY_CONFIG_FILE), true) : array();
-$production = $proxy_config['production'];
+//$production = $proxy_config['production'];
 
 $clients        = $proxy_config['clients'];
 
@@ -70,8 +72,10 @@ if(in_array($client_id, array_keys($clients)) && (isset($_GET['redirect_uri']) |
         $service = $clients[$client_id]['service'];
     }
 
-    $isCIE = ($idp == "CIE" || $idp == "CIE TEST");
-    $service = $isCIE ? "cie" : $service;
+    if ($idp=="CIE" || $idp=="CIE TEST") {
+        $service = "cie";
+        $idp = $production ? "CIE" : "CIE TEST";
+    }
 
     $spidsdk = new SPID_PHP($production, $service);
 
