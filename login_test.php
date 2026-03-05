@@ -7,16 +7,12 @@
 
     require_once("spid-php.php");
 
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-
-    $production = (isset($_ENV['IS_PRODUCTION']) && $_ENV['IS_PRODUCTION'] === 'true');
+    $production = true;
 
     $service = "spid";
     $idp = $_REQUEST['idp'];
     if ($idp=="CIE" || $idp=="CIE TEST") {
         $service = "cie";
-        $idp = $production === true ? "CIE" : "CIE TEST";
     }
 
     $spidsdk = new SPID_PHP($production, $service);
