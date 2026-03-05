@@ -10,7 +10,7 @@
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load();
 
-    $production = isset($_ENV) ? $_ENV['IS_PRODUCTION']: false;
+    $production = (isset($_ENV['IS_PRODUCTION']) && $_ENV['IS_PRODUCTION'] === 'true');
 
     $service = "spid";
     $idp = $_REQUEST['idp'];
