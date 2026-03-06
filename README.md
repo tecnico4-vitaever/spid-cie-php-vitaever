@@ -13,8 +13,6 @@ Il progetto è stato sviluppato utilizzando:
 - Il progetto sia eseguito su un **dominio con protocollo HTTPS**
 - Sia disponibile **Composer** per la gestione delle dipendenze
 
----
-
 # Installazione
 
 1. Clonare o copiare il progetto sul server.
@@ -45,4 +43,26 @@ Nota: `/vitaever/` nel percorso corrisponde al nome del servizio impostato duran
 | **`vendor/simplesamlphp/simplesamlphp/config/authsources.php`**                             | **Configurazione SAML**: File critico per modificare i dati tecnici e i parametri che verranno inclusi all'interno dei file XML dei metadati. |
 | **`vendor/simplesamlphp/simplesamlphp/cert/*`**                                           | **Certificati**: Directory contenente i certificati per SPID e CIE. Sostituisci i file in questa cartella per aggiornare la firma e la validità dei metadati XML. |
 
+### Installazione entità dentro un docker-compose
 
+È possibile integrare questo modulo all'interno del progetto [vitaever-dockers](https://github.com/nethical/vitaever-dockers) (branch localphp7) aggiungendo il seguente servizio al file docker-compose.yml:
+
+``` bash
+spidcie:
+    build:
+    context: .
+    dockerfile: Dockerfile-spidcie
+    hostname: spidcie
+    depends_on:
+        - db
+    networks:
+        - app-network
+    ports:
+        - "3999:80"
+    volumes:
+        - ./spid-cie-proxy:/var/www/html:delegated
+```
+
+Una volta avviati i container, il servizio sarà raggiungibile all'indirizzo:
+
+http://localhost:3999/login_test.php
