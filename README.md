@@ -43,9 +43,9 @@ Nota: `/vitaever/` nel percorso corrisponde al nome del servizio impostato duran
 | **`vendor/simplesamlphp/simplesamlphp/config/authsources.php`**                             | **Configurazione SAML**: File critico per modificare i dati tecnici e i parametri che verranno inclusi all'interno dei file XML dei metadati. |
 | **`vendor/simplesamlphp/simplesamlphp/cert/*`**                                           | **Certificati**: Directory contenente i certificati per SPID e CIE. Sostituisci i file in questa cartella per aggiornare la firma e la validità dei metadati XML. |
 
-### Installazione entità dentro un docker-compose
+### Installazione modulo dentro Docker-compose
 
-È possibile integrare questo modulo all'interno del progetto [vitaever-dockers](https://github.com/nethical/vitaever-dockers) (branch localphp7) aggiungendo il seguente servizio al file docker-compose.yml:
+È possibile integrare questo modulo all'interno del progetto [vitaever-dockers](https://github.com/nethical/vitaever-dockers) (branch localphp7) aggiungendo il seguente servizio al file docker-compose.yml e specificando la cartella dove è presente il progetto spidcie (`/spid-cie-proxy`):
 
 ``` bash
 spidcie:
