@@ -42,6 +42,20 @@ Nota: `/vitaever/` nel percorso corrisponde al nome del servizio impostato duran
 | **`login_test.php`**                                                                        | **Pagina Demo**: File dimostrativo con i bottoni di login. Permette di testare l'accesso, recuperare i dati dell'utente loggato e verificare la procedura di logout. |
 | **`vendor/simplesamlphp/simplesamlphp/config/authsources.php`**                             | **Configurazione SAML**: File critico per modificare i dati tecnici e i parametri che verranno inclusi all'interno dei file XML dei metadati. |
 | **`vendor/simplesamlphp/simplesamlphp/cert/*`**                                           | **Certificati**: Directory contenente i certificati per SPID e CIE. Sostituisci i file in questa cartella per aggiornare la firma e la validità dei metadati XML. |
+| **`cert/*`**                                           | **Certificati**: Directory contenente i certificati per SPID e CIE. Sostituisci i file in questa cartella per aggiornare la firma e la validità dei metadati XML. |
+
+### Aggiornare il metadato
+
+Dopo aver rigenerato i certificati e averli copiati nelle directory indicate sopra nella tabella, occorre scaricare il metadata aggiornato del SP alla url:
+/vitaever/module.php/saml/sp/metadata.php/spid
+
+ed inviare richiesta di aggiornamento del metadata ad AgID secondo la procedura:
+https://www.spid.gov.it/cos-e-spid/diventa-fornitore-di-servizi/procedura-tecnica/
+
+AgID provvederà ad aggiornare il nuovo metadata sul registro SPID e a notificarlo agli IdP.
+Non appena gli IdP avranno acquisito il nuovo metadata l'autenticazione tornerà a funzionare.
+
+
 
 ### Installazione modulo dentro Docker-compose
 
