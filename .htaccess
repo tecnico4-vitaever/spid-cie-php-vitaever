@@ -4,3 +4,6 @@ Header set Access-Control-Allow-Origin "*"
 <FilesMatch "^\.env">
     Require all denied
 </FilesMatch>
+<Files "README.md">
+    Require all denied
+</Files>
