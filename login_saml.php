@@ -8,7 +8,7 @@
 $_SERVER['SERVER_PORT']=$_SERVER['HTTP_X_FORWARDED_PORT']?:$_SERVER['SERVER_PORT'];
 $_SERVER['REQUEST_SCHEME']=$_SERVER['HTTP_X_FORWARDED_PROTO']?:$_SERVER['REQUEST_SCHEME'];
 if($_SERVER['HTTP_X_FORWARDED_PROTO']=='https')
-	$_SERVER['HTTPS']=='on';
+	$_SERVER['HTTPS']='on';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
